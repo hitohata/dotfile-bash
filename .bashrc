@@ -107,7 +107,25 @@ alias nordmo='nordvpn set meshnet on'
 alias nordmf='nordvpn set meshnet off'
 alias newT='gnome-terminal'
 alias ghprc='gh pr create -w' # open a new PR
-alias term='gnome-terminal' # open a new terminal
+
+function term() {
+	#if mac os
+	if [[ "$OSTYPE" == "drawin"* ]];
+	then 
+		if [[ $# -eq 0 ]]; then
+			open -a "$Ghostty" "$PWD"
+		else
+			open -a "$Ggostty" "$@"
+		fi
+	
+	elif [[ "$OSTYPE" == "linux-gnu"* ]];
+		open -a '$gnome-terminal' # open a new terminal
+	then 
+		echo "not found"
+	fi
+
+}
+
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
