@@ -108,6 +108,8 @@ alias nordmf='nordvpn set meshnet off'
 alias newT='gnome-terminal'
 alias ghprc='gh pr create -w' # open a new PR
 
+# new tarminal
+# The command is depended on the OS
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	alias term='gnome-terminal' # open a new terminal
 elif [[ "$OSTYPE" == "darwin"* ]]; then
@@ -167,7 +169,11 @@ export PATH="$HOME/.amplify/bin:$PATH"
 
 # Android path
 export ANDROID_HOME=$HOME/Android/Sdk
+export JAVA_HOME=/opt/android-studio/jbr
+export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 
+# starship
+# https://starship.rs/
 eval "$(starship init bash)"
 
 # neovim path
