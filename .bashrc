@@ -168,8 +168,13 @@ esac
 export PATH="$HOME/.amplify/bin:$PATH"
 
 # Android path
-export ANDROID_HOME=$HOME/Android/Sdk
-export JAVA_HOME=/opt/android-studio/jbr
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	export ANDROID_HOME=$HOME/Android/Sdk
+	export JAVA_HOME=/opt/android-studio/jbr
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+	export ANDROID_HOME=$HOME/Library/Android/sdk
+	export JAVA_HOME="/Applications/Android Studio.app/Contents/Home"
+fi
 export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 
 # starship
