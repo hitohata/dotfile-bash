@@ -192,7 +192,7 @@ PATH="$PATH:/opt/homebrew/bin"
 
 # jetbrains products
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	alias rustrover="open -na '$HOME/Applications/RustRover.app' --args $PWD"
-	alias webstorm="open -na '$HOME/Applications/WebStorm.app' --args $PWD"
-	alias pycharm="open -na '$HOME/Applications/PyCharm Professional Edition.app' --args $PWD"
+	alias rustrover="open -na '$HOME/Applications/RustRover.app' --args $@"
+	alias webstorm="open -na '$HOME/Applications/WebStorm.app' --args $@"
+	alias pycharm="open -na '$HOME/Applications/PyCharm Professional Edition.app' --args $@"
 fi
