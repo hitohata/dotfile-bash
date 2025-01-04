@@ -189,3 +189,10 @@ export NVM_DIR="$HOME/.nvm"
 
 # brew
 PATH="$PATH:/opt/homebrew/bin"
+
+# jetbrains products
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	alias rustrover="open -na '$HOME/Applications/RustRover.app' --args $@"
+	alias webstorm="open -na '$HOME/Applications/WebStorm.app' --args $@"
+	alias pycharm="open -na '$HOME/Applications/PyCharm Professional Edition.app' --args $@"
+fi
