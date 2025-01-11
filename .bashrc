@@ -170,7 +170,7 @@ export PATH="$HOME/.amplify/bin:$PATH"
 # Android path
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	export ANDROID_HOME=$HOME/Android/Sdk
-	export JAVA_HOME=/opt/android-studio/jbr
+	export JAVA_HOME=${HOME}/.local/share/JetBrains/Toolbox/apps/android-studio/jbr
 elif [[ "$OSTYPE" == "darwin"* ]]; then
 	export ANDROID_HOME=$HOME/Library/Android/sdk
 	export JAVA_HOME="/Applications/Android Studio.app/Contents/Home"
@@ -196,3 +196,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	alias webstorm="open -na '$HOME/Applications/WebStorm.app' --args $@"
 	alias pycharm="open -na '$HOME/Applications/PyCharm Professional Edition.app' --args $@"
 fi
+. "/home/hoge/.deno/env"
+
+# --- fzf --
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
