@@ -4,8 +4,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -32,12 +32,12 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+  debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+xterm-color | *-256color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -46,42 +46,41 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+  else
+    color_prompt=
+  fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+xterm* | rxvt*)
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  ;;
+*) ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -107,23 +106,23 @@ alias nordmo='nordvpn set meshnet on'
 alias nordmf='nordvpn set meshnet off'
 alias newT='gnome-terminal'
 alias ghprc='gh pr create -w' # open a new PR
+alias gopen='gh repo view -w'
 
 # new tarminal
 # The command is depended on the OS
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-	alias term='gnome-terminal' # open a new terminal
+  alias term='gnome-terminal' # open a new terminal
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	function term() {
-		#if mac os
-		if [[ $# -eq 0 ]]; then
-			open -a "Ghostty" "$PWD"
-		else
-			open -a "Ggostty" "$@"
-		fi
+  function term() {
+    #if mac os
+    if [[ $# -eq 0 ]]; then
+      open -a "Ghostty" "$PWD"
+    else
+      open -a "Ggostty" "$@"
+    fi
 
-	}
+  }
 fi
-
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -135,7 +134,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -157,8 +156,8 @@ export PATH=$BUN_INSTALL/bin:$PATH
 # pnpm
 export PNPM_HOME="/home/hoge/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
 
@@ -169,11 +168,11 @@ export PATH="$HOME/.amplify/bin:$PATH"
 
 # Android path
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-	export ANDROID_HOME=$HOME/Android/Sdk
-	export JAVA_HOME=${HOME}/.local/share/JetBrains/Toolbox/apps/android-studio/jbr
+  export ANDROID_HOME=$HOME/Android/Sdk
+  export JAVA_HOME=${HOME}/.local/share/JetBrains/Toolbox/apps/android-studio/jbr
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	export ANDROID_HOME=$HOME/Library/Android/sdk
-        export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+  export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 fi
 export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 
@@ -184,17 +183,17 @@ eval "$(starship init bash)"
 # neovim path
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # brew
 PATH="$PATH:/opt/homebrew/bin"
 
 # jetbrains products
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	alias rustrover="open -na '$HOME/Applications/RustRover.app' --args $@"
-	alias webstorm="open -na '$HOME/Applications/WebStorm.app' --args $@"
-	alias pycharm="open -na '$HOME/Applications/PyCharm Professional Edition.app' --args $@"
+  alias rustrover="open -na '$HOME/Applications/RustRover.app' --args $@"
+  alias webstorm="open -na '$HOME/Applications/WebStorm.app' --args $@"
+  alias pycharm="open -na '$HOME/Applications/PyCharm Professional Edition.app' --args $@"
 fi
 . "/home/hoge/.deno/env"
 
