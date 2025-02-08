@@ -4,8 +4,12 @@
 
 BACKUP_DIR="${HOME}/.DotenvBackups"
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias readlink=greadlink
+fi
+
 # get this file dir
-script_path=$(readlink -f "$0")
+script_path=$(readlink -f $0)
 script_dir=$(dirname "$script_path")
 
 if [ ! -d $BACKUP_DIR ]; then
