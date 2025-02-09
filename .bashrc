@@ -111,7 +111,7 @@ alias gopen='gh repo view -w'
 # new tarminal
 # The command is depended on the OS
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  alias term='gnome-terminal' # open a new terminal
+  alias term='nohup ghostty &' # open a new terminal
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   function term() {
     #if mac os
@@ -203,5 +203,3 @@ fi
 eval "$(fzf --bash)"
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
