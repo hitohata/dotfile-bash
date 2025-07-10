@@ -203,3 +203,16 @@ fi
 eval "$(fzf --bash)"
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+
+# search from terminal
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  google-chrome() {
+    open -a "Google Chrome" "$1"
+  }
+  firefox() {
+    open -a "firefox" "$1"
+  }
+fi
+
+csearch() { google-chrome "https://www.google.com/search?q=$(echo "$*" | tr " " "+")"; }
+fsearch() { firefox "https://www.google.com/search?q=$(echo "$*" | tr " " "+")"; }
